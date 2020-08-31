@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+		<title>MateJS :: Calculadora</title>
+		<meta charset="utf-8">	
+		<link rel="stylesheet" href="assets/style.css">
+	</head>
+	
+	<body>
+	
+		<elements>
+		
+			<ePantalla>
+				<div class="ePantalla">{{numeros}}</div>
+			</ePantalla>
+			
+			<eBotonN>
+				<div class="eBotonN" onclick="fNumero('{{numero}}')">{{numero}}</div>
+			</eBotonN>
+			
+			<eBotonO>
+				<div class="eBotonO" onclick="fOperacion('{{operador}}')">{{operador}}</div>
+			</eBotonO>
+		
+		</elements>
+	
+		<div class="calculadora">
+		
+			<div id="cPantalla"></div>
+			
+			<div id="cBotonesN"></div>
+			
+			<div id="cBotonesO"></div>
+		
+		</div>
+	
+		<script src="assets/mate.js"></script>
+		<script>
+		
+			// contenedores
+			var cPantalla = new Container('cPantalla');
+			var cBotonesN = new Container('cBotonesN');
+			var cBotonesO = new Container('cBotonesO');
+			
+			// elementos
+			var ePantalla = new Element('ePantalla');
+			var eBotonesN = [];
+			var eBotonesO = [];
+			
+			// agregar elementos
+			ePantalla.set({numeros: '0'});
+			cPantalla.add(ePantalla);
+			cPantalla.render();
+			
+			for (n=0;n<10;n++)
+			{
+				eBotonesN[n] = new Element('eBotonN');
+				eBotonesN[n].set({numero: n});
+			}
+			
+			cBotonesN.add(eBotonesN);
+			cBotonesN.render();
+			
+			eBotonesO[0] = new Element('eBotonO');
+			eBotonesO[0].set({operador: '+'});
+			
+			eBotonesO[1] = new Element('eBotonO');
+			eBotonesO[1].set({operador: '-'});
+			
+			eBotonesO[2] = new Element('eBotonO');
+			eBotonesO[2].set({operador: 'x'});
+			
+			eBotonesO[3] = new Element('eBotonO');
+			eBotonesO[3].set({operador: '/'});
+			
+			eBotonesO[4] = new Element('eBotonO');
+			eBotonesO[4].set({operador: '='});
+			
+			cBotonesO.add(eBotonesO);
+			cBotonesO.render();
+			
+			// lógica
+			
+			var n1 = '';
+			var n2 = '';
+			var operacion = '';
+			
+			function fNumero(numero)
+			{
+				if (operacion=='')
+					n1 += numero;
+				else
+					n2 += numero;
+					
+				fMostrar();
+			}
+			
+			function fOperacion(operador)
+			{
+				if (operador=='=')
+					fCalcular();
+				else
+					operacion = operador;
+			}
+			
+			function fCalcular()
+			{
+				if (n1=='' || n2=='' || operacion=='')
+					return;
+			
+				let resultado = '';
+				let valor1 = parseInt(n1);
+				let valor2 = parseInt(n2);
+				
+				switch (operacion)
+				{
+					case '+':
+						resultado = valor1 + valor2;
+						break;
+					case '-':
+						resultado = valor1 - valor2;
+						break;
+					case 'x':
+						resultado = valor1 * valor2;
+						break;
+					case '/':
+						resultado = valor1 / valor2;
+						break;
+				}
+				
+				n2 = resultado;
+				fMostrar();
+				
+				n1 = '';
+				n2 = '';
+				operacion = '';
+			
+			}
+			
+			function fMostrar()
+			{
+				if (n2=='')
+					ePantalla.set({numeros: n1});
+				else
+					ePantalla.set({numeros: n2});
+					
+				cPantalla.render();
+			}
+			
+			
+		</script>
+
+	</body>
+</html>

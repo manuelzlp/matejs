@@ -1,0 +1,52 @@
+.calculadora
+{
+	width: 400px;
+	background-color: #333;
+	margin: auto;
+	border-radius: 25px;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 35px;
+}
+
+.ePantalla
+{
+	width: 370px;
+	background-color: #090;
+	color: #fff;
+	font-size: 25pt;
+	border-radius: 10px;
+	text-align: right;
+	display: inline-block;
+	margin-bottom: 25px;
+}
+
+.eBotonN
+{
+	margin-top: 15px;
+	background-color: #6633FF;
+	color: #fff;
+	width: 60px;
+	height: 60px;
+	font-size: 35pt;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.eBotonO
+{
+	margin-top: 15px;
+	background-color: #FF6600;
+	color: #fff;
+	width: 60px;
+	height: 60px;
+	font-size: 35pt;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
