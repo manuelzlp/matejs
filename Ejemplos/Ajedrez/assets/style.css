@@ -1,0 +1,54 @@
+@font-face
+{
+	font-family: Chess;
+	src: url(/assets/chess.ttf);
+}
+
+.tablero
+{
+	width: 400px;
+	height: 400px;
+	border: 1px solid #000;
+	margin: auto;
+	position: relative;
+}
+
+.casilla
+{
+	font-family: Chess;
+	width: 50px;
+	height: 50px;
+	font-size: 30pt;
+	text-align: center;
+	border: 0px;
+	position: absolute;
+	cursor: pointer;
+}
+
+.claro
+{
+	background-color: #fc0;
+}
+
+.oscuro
+{
+	background-color: #730;
+}
+
+.piezas
+{
+	width: 350px;
+	border: 1px solid #000;
+	margin: auto;
+	text-align: center;
+}
+
+.pieza
+{
+	font-family: Chess;
+	display: inline-block;
+	width: 50px;
+	font-size: 40pt;
+	text-align: center;
+	cursor: pointer;
+}

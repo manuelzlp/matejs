@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+		<title>MateJs :: Ajedrez</title>
+		<meta charset="utf-8">	
+		<link rel="stylesheet" href="assets/style.css">
+	</head>
+	
+	<body>
+	
+		<elements>
+		
+			<casilla>
+			
+				<div onclick="fCasilla({{id}})" class="casilla {{color}}" style="left: {{x}}px; top: {{y}}px">
+				
+					{{pieza}}
+				
+				</div>
+			
+			</casilla>
+			
+			<pieza>
+			
+				<div onclick="fPieza('{{pieza}}')" class="pieza">
+					{{pieza}}
+				</div>
+			
+			</pieza>
+			
+		</elements>
+	
+		<div id="tablero" class="tablero">
+		</div>
+		
+		<br />
+		
+		<div id="piezas" class="piezas">
+		</div>
+	
+		<script src="assets/mate.js"></script>
+		<script>
+		
+			// declaraciones
+			
+			var cTablero = new Container('tablero');
+			var cPiezas = new Container('piezas');
+			var casillas = [];
+			
+			var piezaSeleccionada = '';
+			
+			var arrayPiezas = ['k', 'q', 'r', 'b', 'n', 'p', 'l', 'w', 't', 'v', 'm', 'o'];
+		
+			const ancho = 50;
+			const alto = 50;
+			
+			var fila = 0;
+			var columna = 0;
+			var color = 'claro';
+			
+			// elementos
+			for (n=0;n<64;n++)
+			{
+				
+				let x = ancho * columna;
+				let y = alto * fila;
+				
+				let atributos = {
+					id: n,
+					x: x,
+					y: y,
+					color: color,
+					pieza: ''
+				};
+				
+				columna++;
+				
+				if (columna==8)
+				{
+					columna = 0;
+					fila++;
+				}
+				else
+				{
+					color = (color=='claro') ? 'oscuro' : 'claro';
+				}
+				
+				casillas[n] = new Element('casilla', atributos);
+				
+			}
+			
+			cTablero.add(casillas);
+			cPiezas.map('pieza', arrayPiezas);
+			
+			// render
+			cTablero.render();
+			cPiezas.render();
+			
+			// eventos
+			function fCasilla(id)
+			{
+				let piezaActual = casillas[id].props.pieza;
+				
+				if (piezaActual=='')
+					casillas[id].set({pieza: piezaSeleccionada});
+				else
+					casillas[id].set({pieza: ''});
+				
+				cTablero.render();
+
+			}
+			
+			function fPieza(pieza)
+			{
+				piezaSeleccionada = pieza;
+			}
+			
+			
+		
+		</script>
+
+	</body>
+</html>
